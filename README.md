@@ -58,6 +58,7 @@ import { FadeInFlatList } from '@ja-ka/react-native-fade-in-flatlist';
 |:---:|:---:|:---:|
 |<img src="assets/i0_d500_p1.gif" alt="drawing" height="600" width="277"/>|<img src="assets/i0_d500_p5.gif" alt="drawing" height="600" width="277"/>|<img src="assets/i1000_d2000_p3.gif" alt="drawing" height="600" width="277"/>|
 
+
 ```javascript
 // Example 1
 import { FadeInFlatList } from '@ja-ka/react-native-fade-in-flatlist';
@@ -111,9 +112,6 @@ import { FadeInFlatList } from '@ja-ka/react-native-fade-in-flatlist';
 - [`parallelItems`](#parallelitems)
 - [`itemsToFadeIn`](#itemstofadein)
 
-## To do
-
-- [ ] Animate FlatList separator
 
 # Props
 

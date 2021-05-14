@@ -39,7 +39,7 @@ const FadeInFlatList = <ItemT,>({
   );
 
   const Separator: FC<{ index: number }> = useCallback(({ index }): ReactElement | null => {
-    return ItemSeparatorComponent ? (
+    return ItemSeparatorComponent && index !== undefined ? (
       <FadeInComponent index={index}>
         <ItemSeparatorComponent />
       </FadeInComponent>
