@@ -46,17 +46,17 @@ const FadeInFlatList = <ItemT,>({
     ) : null;
   }, []);
 
+  const Item: FC<{ info: ListRenderItemInfo<ItemT> }> = useCallback(({ info }): ReactElement => {
+    useEffect(() => {
+      info.separators.updateProps('leading', { index: info.index });
+    }, []);
+
+    return <FadeInComponent index={info.index}>{originalRenderItem!(info)}</FadeInComponent>;
+  }, []);
+
   const renderItem = useCallback(
     (info: ListRenderItemInfo<ItemT>): React.ReactElement | null => {
-      const { index } = info;
-
-      info.separators.updateProps('leading', { index });
-
-      return index < itemsToFadeIn ? (
-        <FadeInComponent index={index}>{originalRenderItem!(info)}</FadeInComponent>
-      ) : (
-        originalRenderItem!(info)
-      );
+      return info.index < itemsToFadeIn ? <Item info={info} /> : originalRenderItem!(info);
     },
     [originalRenderItem, itemsToFadeIn],
   );
