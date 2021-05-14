@@ -43,6 +43,8 @@ const FadeInFlatList = <ItemT,>({
       <FadeInComponent index={index}>
         <ItemSeparatorComponent />
       </FadeInComponent>
+    ) : ItemSeparatorComponent ? (
+      <ItemSeparatorComponent />
     ) : null;
   }, []);
 
