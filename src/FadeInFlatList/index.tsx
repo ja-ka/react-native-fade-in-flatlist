@@ -18,23 +18,26 @@ const FadeInFlatList = <ItemT,>({
 }): ReactElement => {
   const value = useRef(new Animated.Value(0));
 
-  const interpolate = (index: number) => {
-    const moveBy = (1 - 1 / parallelItems) * index;
-
-    return value.current.interpolate({
-      inputRange:
-        index === 0
-          ? [-1, 0, 1, 2]
-          : [index - 1 - moveBy, index - moveBy, index + 1 - moveBy, index + 2 - moveBy],
-      outputRange: [0, 0, 1, 1],
-      extrapolate: 'clamp',
-    });
-  };
-
   const FadeInComponent: FC<{ index: number }> = useCallback(
-    ({ index, children }): ReactElement => (
-      <Animated.View style={{ opacity: interpolate(index) }}>{children}</Animated.View>
-    ),
+    ({ index, children }): ReactElement => {
+      const moveBy = (1 - 1 / parallelItems) * index;
+
+      return (
+        <Animated.View
+          style={{
+            opacity: value.current.interpolate({
+              inputRange:
+                index === 0
+                  ? [-1, 0, 1, 2]
+                  : [index - 1 - moveBy, index - moveBy, index + 1 - moveBy, index + 2 - moveBy],
+              outputRange: [0, 0, 1, 1],
+              extrapolate: 'clamp',
+            }),
+          }}>
+          {children}
+        </Animated.View>
+      );
+    },
     [],
   );
 
