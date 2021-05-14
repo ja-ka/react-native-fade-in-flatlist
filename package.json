@@ -1,6 +1,6 @@
 {
   "name": "@ja-ka/react-native-fade-in-flatlist",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "description": "An advanced React Native FlatList component with fade-in support for rendered items.",
   "main": "lib/index.js",
