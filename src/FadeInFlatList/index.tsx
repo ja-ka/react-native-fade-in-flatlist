@@ -3,11 +3,11 @@ import { ReactElement, useCallback, useEffect, useRef } from 'react';
 import { Animated, Easing, FlatListProps, ListRenderItemInfo, FlatList } from 'react-native';
 
 const FadeInFlatList = <ItemT,>({
-  renderItem: originalRenderItem,
   itemsToFadeIn = 10,
   initialDelay = 0,
   durationPerItem = 50,
   parallelItems = 1,
+  renderItem: originalRenderItem,
   ItemSeparatorComponent,
   ...props
 }: FlatListProps<ItemT> & {
@@ -26,10 +26,12 @@ const FadeInFlatList = <ItemT,>({
         <Animated.View
           style={{
             opacity: value.current.interpolate({
-              inputRange:
-                index === 0
-                  ? [-1, 0, 1, 2]
-                  : [index - 1 - moveBy, index - moveBy, index + 1 - moveBy, index + 2 - moveBy],
+              inputRange: [
+                index - 1 - moveBy,
+                index - moveBy,
+                index + 1 - moveBy,
+                index + 2 - moveBy,
+              ],
               outputRange: [0, 0, 1, 1],
               extrapolate: 'clamp',
             }),
@@ -41,15 +43,17 @@ const FadeInFlatList = <ItemT,>({
     [],
   );
 
-  const Separator: FC<{ index: number }> = useCallback(({ index }): ReactElement | null => {
-    return ItemSeparatorComponent && index !== undefined ? (
-      <FadeInComponent index={index}>
+  const Separator: FC<{ index: number }> = useCallback(
+    ({ index }): ReactElement | null =>
+      ItemSeparatorComponent && index !== undefined ? (
+        <FadeInComponent index={index}>
+          <ItemSeparatorComponent />
+        </FadeInComponent>
+      ) : ItemSeparatorComponent ? (
         <ItemSeparatorComponent />
-      </FadeInComponent>
-    ) : ItemSeparatorComponent ? (
-      <ItemSeparatorComponent />
-    ) : null;
-  }, []);
+      ) : null,
+    [],
+  );
 
   const Item: FC<{ info: ListRenderItemInfo<ItemT> }> = useCallback(({ info }): ReactElement => {
     useEffect(() => {
@@ -60,9 +64,8 @@ const FadeInFlatList = <ItemT,>({
   }, []);
 
   const renderItem = useCallback(
-    (info: ListRenderItemInfo<ItemT>): React.ReactElement | null => {
-      return info.index < itemsToFadeIn ? <Item info={info} /> : originalRenderItem!(info);
-    },
+    (info: ListRenderItemInfo<ItemT>): React.ReactElement | null =>
+      info.index < itemsToFadeIn ? <Item info={info} /> : originalRenderItem!(info),
     [originalRenderItem, itemsToFadeIn],
   );
 

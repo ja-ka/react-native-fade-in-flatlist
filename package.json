@@ -9,8 +9,8 @@
     "lib/**/*"
   ],
   "scripts": {
-    "test": "jest",
-    "build": "tsc --project ./tsconfig.json",
+    "test": "rm -rf ./coverage && jest",
+    "build": "rm -rf ./lib && tsc --project ./tsconfig.json",
     "pub": "npm version patch && publish",
     "lint": "tslint --fix -p ./tsconfig.json"
   },

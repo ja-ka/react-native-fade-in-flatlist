@@ -3,7 +3,7 @@
       "target": "es6",
       "module": "es6",
       "moduleResolution": "node",
-      "declaration": true,
+      "declaration": false,
       "outDir": "./lib",
       "strict": true,
       "jsx": "react-native",
@@ -17,7 +17,8 @@
       "noImplicitReturns": true,
       "noFallthroughCasesInSwitch": true,
       "forceConsistentCasingInFileNames": true,
-      "allowSyntheticDefaultImports": true
+      "allowSyntheticDefaultImports": true,
+      "sourceMap": false
     },
     "include": [
       "src"
