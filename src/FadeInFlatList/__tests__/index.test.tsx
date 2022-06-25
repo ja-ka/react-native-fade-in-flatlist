@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { FC, ReactElement, useEffect, useRef } from 'react';
 import { Text } from 'react-native';
 import { render, act } from '@testing-library/react-native';
 import FadeInFlatList from '../index';
 
-const DATA = [{ id: 42 }, { id: 43 }];
+const DATA: {id: number}[] = [{ id: 42 }, { id: 43 }];
 const renderItem = ({ item }: any) => <Text>{item.id}</Text>;
-const keyExtractor = ({ id }: { id: number }) => id.toString();
+const keyExtractor = (({ id }: { id: number }) => id.toString()) as any;
 
-it('should render the c<omponent', async () => {
+it('should render the component', async () => {
   const { toJSON } = render(
     <FadeInFlatList
       data={DATA}
@@ -24,6 +24,26 @@ it('should render the c<omponent', async () => {
   expect(toJSON()).toMatchSnapshot();
 });
 
+it('uses separator', async () => {
+  const Separator: FC = (): null => null;
+
+  const { toJSON } = render(
+    <FadeInFlatList
+      data={DATA}
+      renderItem={renderItem}
+      itemsToFadeIn={1}
+      initialDelay={100}
+      durationPerItem={100}
+      keyExtractor={keyExtractor}
+      ItemSeparatorComponent={Separator}
+    />,
+  );
+
+  await act(async () => {});
+
+  expect(toJSON()).toMatchSnapshot();
+});
+
 it('should use defaults', async () => {
   const { toJSON } = render(
     <FadeInFlatList data={DATA} renderItem={renderItem} keyExtractor={keyExtractor} />,
@@ -32,4 +52,29 @@ it('should use defaults', async () => {
   await act(async () => {});
 
   expect(toJSON()).toMatchSnapshot();
+});
+
+it('returns reference to ref', async () => {
+  let called = 0;
+
+  const MyComponent = (): ReactElement => {
+    const listRef = useRef();
+
+    useEffect(() => {
+      called++;
+
+      // @ts-expect-error possibly undefined
+      listRef.current.scrollToEnd();
+    }, []);
+
+    return (
+      <FadeInFlatList ref={listRef} data={DATA} renderItem={renderItem} keyExtractor={keyExtractor} />
+    );
+  };
+
+  render(<MyComponent />);
+
+  await act(async () => {});
+
+  expect(called).toBe(1);
 });

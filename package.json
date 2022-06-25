@@ -10,6 +10,8 @@
   ],
   "scripts": {
     "test": "rm -rf ./coverage && jest",
+    "test:debug": "rm -rf ./coverage && node --inspect ./node_modules/jest/bin/jest",
+    "test:update": "rm -rf ./coverage && jest --updateSnapshot",
     "build": "rm -rf ./lib && tsc --project ./tsconfig.json",
     "pub": "npm version patch && publish",
     "lint": "tslint --fix -p ./tsconfig.json"

@@ -1,8 +1,14 @@
-import React, { FC } from 'react';
-import { ReactElement, useCallback, useEffect, useRef } from 'react';
+import React, { FC, Ref, ReactElement, useCallback, useEffect, useRef } from 'react';
 import { Animated, Easing, FlatListProps, ListRenderItemInfo, FlatList } from 'react-native';
 
-const FadeInFlatList = <ItemT,>({
+type FadeInFlatListProps<ItemT> = FlatListProps<ItemT> & {
+  itemsToFadeIn?: number;
+  initialDelay?: number;
+  durationPerItem?: number;
+  parallelItems?: number;
+};
+
+const FadeInFlatList = React.forwardRef(<ItemT,>({
   itemsToFadeIn = 10,
   initialDelay = 0,
   durationPerItem = 50,
@@ -10,12 +16,7 @@ const FadeInFlatList = <ItemT,>({
   renderItem: originalRenderItem,
   ItemSeparatorComponent,
   ...props
-}: FlatListProps<ItemT> & {
-  itemsToFadeIn?: number;
-  initialDelay?: number;
-  durationPerItem?: number;
-  parallelItems?: number;
-}): ReactElement => {
+}: FadeInFlatListProps<ItemT>, ref: Ref<FlatList>): ReactElement => {
   const value = useRef(new Animated.Value(0));
 
   const FadeInComponent: FC<{ index: number }> = useCallback(
@@ -84,10 +85,11 @@ const FadeInFlatList = <ItemT,>({
   return (
     <FlatList
       {...props}
+      ref={ref}
       renderItem={renderItem}
       ItemSeparatorComponent={ItemSeparatorComponent ? Separator : null}
     />
   );
-};
+});
 
 export default FadeInFlatList;
