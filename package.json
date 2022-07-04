@@ -13,7 +13,7 @@
     "test:debug": "rm -rf ./coverage && node --inspect ./node_modules/jest/bin/jest",
     "test:update": "rm -rf ./coverage && jest --updateSnapshot",
     "build": "rm -rf ./lib && tsc --project ./tsconfig.json",
-    "pub": "npm version patch && npm publish",
+    "pub": "npm run build && npm version patch && npm publish",
     "lint": "tslint --fix -p ./tsconfig.json"
   },
   "repository": {
