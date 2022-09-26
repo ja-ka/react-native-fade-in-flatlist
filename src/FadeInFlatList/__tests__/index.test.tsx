@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, useEffect, useRef } from 'react';
-import { Text } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import { render, act } from '@testing-library/react-native';
 import FadeInFlatList from '../index';
 
@@ -19,7 +19,9 @@ it('should render the component', async () => {
     />,
   );
 
-  await act(async () => {});
+  await act(async () => {
+    // this is ok
+  });
 
   expect(toJSON()).toMatchSnapshot();
 });
@@ -39,7 +41,9 @@ it('uses separator', async () => {
     />,
   );
 
-  await act(async () => {});
+  await act(async () => {
+    // this is ok
+  });
 
   expect(toJSON()).toMatchSnapshot();
 });
@@ -49,7 +53,9 @@ it('should use defaults', async () => {
     <FadeInFlatList data={DATA} renderItem={renderItem} keyExtractor={keyExtractor} />,
   );
 
-  await act(async () => {});
+  await act(async () => {
+    // this is ok
+  });
 
   expect(toJSON()).toMatchSnapshot();
 });
@@ -58,7 +64,7 @@ it('returns reference to ref', async () => {
   let called = 0;
 
   const MyComponent = (): ReactElement => {
-    const listRef = useRef();
+    const listRef = useRef<FlatList>();
 
     useEffect(() => {
       called++;
@@ -74,7 +80,9 @@ it('returns reference to ref', async () => {
 
   render(<MyComponent />);
 
-  await act(async () => {});
+  await act(async () => {
+    // this is ok
+  });
 
   expect(called).toBe(1);
 });

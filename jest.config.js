@@ -179,7 +179,10 @@ module.exports = {
   // testURL: "http://localhost",
 
   // Setting this value to "fake" allows the use of fake timers for functions such as "setTimeout"
-  timers: 'fake', // see https://github.com/facebook/jest/issues/4359#issuecomment-579654609
+  fakeTimers: {
+    "enableGlobally": false,
+    "legacyFakeTimers": false
+  }, // see https://github.com/facebook/jest/issues/4359#issuecomment-579654609
 
   // A map from regular expressions to paths to transformers
   // transform: {},

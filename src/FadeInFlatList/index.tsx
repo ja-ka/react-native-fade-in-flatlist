@@ -19,7 +19,7 @@ const FadeInFlatList = React.forwardRef(<ItemT,>({
 }: FadeInFlatListProps<ItemT>, ref: Ref<FlatList>): ReactElement => {
   const value = useRef(new Animated.Value(0));
 
-  const FadeInComponent: FC<{ index: number }> = useCallback(
+  const FadeInComponent: FC<{ index: number, children: ReactElement }> = useCallback(
     ({ index, children }): ReactElement => {
       const moveBy = (1 - 1 / parallelItems) * index;
 
@@ -61,6 +61,7 @@ const FadeInFlatList = React.forwardRef(<ItemT,>({
       info.separators.updateProps('leading', { index: info.index });
     }, []);
 
+    // @ts-expect-error ts(2322)
     return <FadeInComponent index={info.index}>{originalRenderItem!(info)}</FadeInComponent>;
   }, []);
 

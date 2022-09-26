@@ -4,25 +4,21 @@ exports[`should render the component 1`] = `
 <RCTScrollView
   ItemSeparatorComponent={null}
   data={
-    Array [
-      Object {
+    [
+      {
         "id": 42,
       },
-      Object {
+      {
         "id": 43,
       },
     ]
   }
-  disableVirtualization={false}
   getItem={[Function]}
   getItemCount={[Function]}
-  horizontal={false}
-  initialNumToRender={10}
   keyExtractor={[Function]}
-  maxToRenderPerBatch={10}
   onContentSizeChange={[Function]}
-  onEndReachedThreshold={2}
   onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
   onMomentumScrollEnd={[Function]}
   onScroll={[Function]}
   onScrollBeginDrag={[Function]}
@@ -30,10 +26,8 @@ exports[`should render the component 1`] = `
   removeClippedSubviews={false}
   renderItem={[Function]}
   scrollEventThrottle={50}
-  stickyHeaderIndices={Array []}
-  updateCellsBatchingPeriod={50}
-  viewabilityConfigCallbackPairs={Array []}
-  windowSize={21}
+  stickyHeaderIndices={[]}
+  viewabilityConfigCallbackPairs={[]}
 >
   <View>
     <View
@@ -41,8 +35,9 @@ exports[`should render the component 1`] = `
       style={null}
     >
       <View
+        collapsable={false}
         style={
-          Object {
+          {
             "opacity": 0,
           }
         }
@@ -68,25 +63,21 @@ exports[`should use defaults 1`] = `
 <RCTScrollView
   ItemSeparatorComponent={null}
   data={
-    Array [
-      Object {
+    [
+      {
         "id": 42,
       },
-      Object {
+      {
         "id": 43,
       },
     ]
   }
-  disableVirtualization={false}
   getItem={[Function]}
   getItemCount={[Function]}
-  horizontal={false}
-  initialNumToRender={10}
   keyExtractor={[Function]}
-  maxToRenderPerBatch={10}
   onContentSizeChange={[Function]}
-  onEndReachedThreshold={2}
   onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
   onMomentumScrollEnd={[Function]}
   onScroll={[Function]}
   onScrollBeginDrag={[Function]}
@@ -94,10 +85,8 @@ exports[`should use defaults 1`] = `
   removeClippedSubviews={false}
   renderItem={[Function]}
   scrollEventThrottle={50}
-  stickyHeaderIndices={Array []}
-  updateCellsBatchingPeriod={50}
-  viewabilityConfigCallbackPairs={Array []}
-  windowSize={21}
+  stickyHeaderIndices={[]}
+  viewabilityConfigCallbackPairs={[]}
 >
   <View>
     <View
@@ -105,9 +94,10 @@ exports[`should use defaults 1`] = `
       style={null}
     >
       <View
+        collapsable={false}
         style={
-          Object {
-            "opacity": 0,
+          {
+            "opacity": 0.044,
           }
         }
       >
@@ -121,8 +111,9 @@ exports[`should use defaults 1`] = `
       style={null}
     >
       <View
+        collapsable={false}
         style={
-          Object {
+          {
             "opacity": 0,
           }
         }
@@ -140,25 +131,21 @@ exports[`uses separator 1`] = `
 <RCTScrollView
   ItemSeparatorComponent={[Function]}
   data={
-    Array [
-      Object {
+    [
+      {
         "id": 42,
       },
-      Object {
+      {
         "id": 43,
       },
     ]
   }
-  disableVirtualization={false}
   getItem={[Function]}
   getItemCount={[Function]}
-  horizontal={false}
-  initialNumToRender={10}
   keyExtractor={[Function]}
-  maxToRenderPerBatch={10}
   onContentSizeChange={[Function]}
-  onEndReachedThreshold={2}
   onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
   onMomentumScrollEnd={[Function]}
   onScroll={[Function]}
   onScrollBeginDrag={[Function]}
@@ -166,10 +153,8 @@ exports[`uses separator 1`] = `
   removeClippedSubviews={false}
   renderItem={[Function]}
   scrollEventThrottle={50}
-  stickyHeaderIndices={Array []}
-  updateCellsBatchingPeriod={50}
-  viewabilityConfigCallbackPairs={Array []}
-  windowSize={21}
+  stickyHeaderIndices={[]}
+  viewabilityConfigCallbackPairs={[]}
 >
   <View>
     <View
@@ -177,8 +162,9 @@ exports[`uses separator 1`] = `
       style={null}
     >
       <View
+        collapsable={false}
         style={
-          Object {
+          {
             "opacity": 0,
           }
         }
